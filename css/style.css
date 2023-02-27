@@ -317,7 +317,11 @@ section .title span::after {
   transform: translateX(-50%);
 }
 
+.tap-picture{
+display: none;
+}
 /* Picture flip */
+
 
 .about .about-details .left {
   width: 45%;
@@ -335,6 +339,7 @@ section .title span::after {
   perspective: 1000px;
   margin-bottom: 20%;
   margin-right: 15%;
+  cursor: pointer;
 }
 
 .wrapper_about .card {
@@ -476,23 +481,18 @@ section .button {
   align-items: center;
   margin: 0 10px;
 }
-.skills-details .experience .num {
-  color: #0e2431;
-  font-size: 80px;
-}
-.skills-details .experience .exp {
-  color: #0e2431;
-  margin-left: 20px;
-  font-size: 18px;
-  font-weight: 500;
-  margin: 0 6px;
-}
+
+
 
 
 /*------letters experiences----- */
+.skills .skills-details.num{
+  color: #0e2431;
+  font-size: 4rem;
+}
 
 .word {
-	font-family: 'Anton', sans-serif;
+	font-family:'Poppins';
 	perspective: 1000px; 
   color:rgb(64, 112, 244) ;
   font-weight:bold;
@@ -503,7 +503,7 @@ section .button {
 .word span {
 	cursor: pointer;
 	display: inline-block;
-	font-size: 4rem;
+	font-size: 3.2rem;
 	user-select: none;
 
 }
@@ -1359,14 +1359,28 @@ footer .footer .content > div {
   .wrapper_skills_boxes {
     width: 50%;
   }
+  .back-face .info .title{
+    font-size: 1.4rem; 
+ }
+ .back-face .info p {
+   font-size: 1.1rem;
+ }
+ .back-face .info h3 {
+  font-size: 1.4rem;
+}
 }
 
 @media (max-width: 2560px) {
 
-  .back-face .info p{
-
-   font-size: 1rem; 
-  }
+  .back-face .info .title{
+    font-size: 1.3rem; 
+ }
+ .back-face .info p {
+   font-size: 1rem;
+ }
+ .back-face .info h3 {
+  font-size: 1.2rem;
+}
   
   .navbar .menu a,
   .navbar .media-icons a {
@@ -1557,16 +1571,15 @@ section .about-details  .button {
     height: 120px;
     width: 120px;
   }
-  .back-face .info .title {
-    font-size: 15px;
-  }
-
-  .back-face .info p {
-    font-size: 14px;
-  }
-  .back-face .info h3 {
-    font-size: 15px;
-  }
+  .back-face .info .title{
+    font-size: 1.3rem; 
+ }
+ .back-face .info p {
+   font-size: 1rem;
+ }
+ .back-face .info h3 {
+  font-size: 1.2rem;
+}
 }
 
 @media (max-width: 1024px) {
@@ -1639,6 +1652,17 @@ section .about-details  .button {
     width: 50%;
     display: flex;
   }
+ .back-face .info .title{
+    font-size: 1.2rem; 
+ }
+ .back-face .info p {
+   font-size: 1rem;
+ }
+ .back-face .info h3 {
+  font-size: 1.1rem;
+}
+
+
 }
 
 @media (max-width: 992px) {
@@ -1717,16 +1741,8 @@ section .about-details  .button {
     height: 120px;
     width: 120px;
   }
-  .back-face .info .title {
-    font-size: 15px;
-  }
-
-  .back-face .info p {
-    font-size: 13px;
-  }
-  .back-face .info h3 {
-    font-size: 15px;
-  }
+  
+ 
 
   .container .content1 {
     flex-direction: column-reverse;
@@ -1746,9 +1762,15 @@ section .about-details  .button {
     margin-left: 0;
   }
 
-  .back-face .info .title {
-    font-size: 17px;
-  }
+  .back-face .info .title{
+    font-size: 1.2rem; 
+ }
+ .back-face .info p {
+   font-size: 1rem;
+ }
+ .back-face .info h3 {
+  font-size: 1.1rem;
+}
 
 
 }
@@ -1882,12 +1904,15 @@ section .about-details  .button {
     font-size: 15px;
   }
 
-  .back-face .info p {
-    font-size: 12px;
-  }
-  .back-face .info h3 {
-    font-size: 15px;
-  }
+  .back-face .info .title{
+    font-size: 1.1rem; 
+ }
+ .back-face .info p {
+   font-size: 0.9rem;
+ }
+
+
+
   .wrapper_about{
     margin: 0 auto;
   }
@@ -1998,12 +2023,24 @@ section .about-details  .button {
   .wrapper_about{
     margin: 0 auto;
   }
+  .back-face .info .title{
+     font-size: 1.1rem; 
+  }
+  .back-face .info p {
+    font-size: 0.9rem;
+  }
   
 }
 
 @media (max-width: 400px) {
+  .drag-picture{
+    display: none;
+  }
+  .wrapper_about .card img.tap-picture{
+    display: block;
+  }
   .word span {
-    font-size: 1.9rem;
+    font-size: 1.6rem;
   }
   .skills .skills-details .experience{
     display: flex;
@@ -2084,8 +2121,12 @@ margin-top: 11px;
 }
 
 .back-face .info p {
-  font-size: 10px;
+  font-size: 0.9rem;
 }
+.back-face .info .title{
+  font-size: 1.1rem;
+}
+  
 
 
 }

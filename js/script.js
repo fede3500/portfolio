@@ -44,7 +44,7 @@ for (var i = 0; i < navLinks.length; i++) {
 }
 
 // Letters animations
-const spans = document.querySelectorAll('.word span');
+/*const spans = document.querySelectorAll('.word span');
 
 spans.forEach((span, idx) => {
 	span.addEventListener('click', (e) => {
@@ -58,6 +58,33 @@ spans.forEach((span, idx) => {
 	setTimeout(() => {
 		span.classList.add('active');
 	}, 750 * (idx+1))
-});
+});*/
 
 
+
+function animateIfVisible() {
+  const spans = document.querySelectorAll('.word span');
+  for (let i = 0; i < spans.length; i++) {
+    const span = spans[i];
+    const spanRect = span.getBoundingClientRect();
+    const isSpanVisible = (spanRect.top >= 0 && spanRect.bottom <= window.innerHeight);
+    if (isSpanVisible) {
+      setTimeout(() => {
+        span.classList.add('active');
+      }, 750 * (i+1))
+    }
+  }
+  setTimeout(() => {
+    for (let i = 0; i < spans.length; i++) {
+      const span = spans[i];
+      span.addEventListener('click', (e) => {
+        e.target.classList.add('active');
+      });
+      span.addEventListener('animationend', (e) => {
+        e.target.classList.remove('active');
+      });
+    }
+  });
+}
+
+document.addEventListener('scroll', animateIfVisible);
