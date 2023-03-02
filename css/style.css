@@ -486,7 +486,7 @@ section .button {
 
 
 /*------letters experiences----- */
-.skills .skills-details.num{
+#num{
   color: #0e2431;
   font-size: 4rem;
 }
@@ -503,7 +503,7 @@ section .button {
 .word span {
 	cursor: pointer;
 	display: inline-block;
-	font-size: 3.2rem;
+	font-size: 3rem;
 	user-select: none;
 
 }
@@ -1452,6 +1452,10 @@ footer .footer .content > div {
   .word span {
     font-size: 2.3rem;
   }
+  #num {
+    color: rgb(14, 36, 49);
+    font-size: 2.7rem;
+}
   .skills .skills-details .experience{
     display: flex;
     align-items: center;
@@ -1505,6 +1509,10 @@ section .about-details  .button {
   .word span {
     font-size: 2.3rem;
   }
+  #num {
+    color: rgb(14, 36, 49);
+    font-size: 2.7rem;
+}
   .skills .skills-details .experience{
     display: flex;
     align-items: center;
@@ -1586,6 +1594,10 @@ section .about-details  .button {
   .word span {
     font-size: 2.3rem;
   }
+  #num {
+    color: rgb(14, 36, 49);
+    font-size: 2.7rem;
+}
   .skills .skills-details .experience{
     display: flex;
     align-items: center;
@@ -1669,6 +1681,10 @@ section .about-details  .button {
   .word span {
     font-size: 2.3rem;
   }
+  #num {
+    color: rgb(14, 36, 49);
+    font-size: 2.7rem;
+}
   .skills .skills-details .experience{
     display: flex;
     align-items: center;
@@ -1780,6 +1796,10 @@ section .about-details  .button {
     font-size: 1.9rem;
     
   }
+  #num {
+    color: rgb(14, 36, 49);
+    font-size: 2.5rem;
+}
   .skills .skills-details .experience{
     display: flex;
     align-items: center;
@@ -1922,6 +1942,10 @@ section .about-details  .button {
   .word span {
     font-size: 1.9rem;
   }
+  #num {
+    color: rgb(14, 36, 49);
+    font-size: 2.5rem;
+}
   .skills .skills-details .experience{
     display: flex;
     align-items: center;
@@ -2042,6 +2066,10 @@ section .about-details  .button {
   .word span {
     font-size: 1.6rem;
   }
+  #num {
+    color: rgb(14, 36, 49);
+    font-size: 2.5rem;
+}
   .skills .skills-details .experience{
     display: flex;
     align-items: center;
