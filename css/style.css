@@ -120,6 +120,7 @@ nav.sticky .menu-btn {
   background-position: center;
   background-attachment: fixed;
   font-family: "Ubuntu", sans-serif;
+  overflow: hidden;
 
 }
 .home .home-content {
@@ -129,7 +130,7 @@ nav.sticky .menu-btn {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  overflow: hidden;
+
  
 }
 .home .text-one {
@@ -1421,7 +1422,7 @@ section .about-details  .button {
     background-position: center;
     background-attachment: fixed;
     font-family: "Ubuntu", sans-serif;
-  
+    overflow: hidden;
   }
   .image-avatar {
     visibility: visible;
