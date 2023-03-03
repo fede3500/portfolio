@@ -125,6 +125,7 @@ nav.sticky .menu-btn {
   background-position: center;
   background-attachment: fixed;
   font-family: "Ubuntu", sans-serif;
+  overflow: hidden;
 }
 .home .home-content {
   width: 90%;
@@ -133,7 +134,7 @@ nav.sticky .menu-btn {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  overflow: hidden;
+
 }
 .home .text-one {
   font-size: 25px;
@@ -160,7 +161,7 @@ nav.sticky .menu-btn {
 
 .area {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   margin: 0;
 }
 
