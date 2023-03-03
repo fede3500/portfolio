@@ -1508,10 +1508,10 @@ section .about-details  .button {
   }
  
   .navbar .menu a, .navbar .media-icons a{
-  font-size: 1.5rem;
+  font-size: 1rem;
   }
   nav .navbar .logo a{
-    font-size: 1.7rem;
+    font-size: 1.5rem;
   }
   .image-avatar {
     width: 70%;
