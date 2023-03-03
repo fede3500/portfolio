@@ -124,7 +124,7 @@ nav.sticky .menu-btn {
 }
 .home .home-content {
   width: 90%;
-  height: 100vh;
+  height: 100%;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -1394,6 +1394,9 @@ section .about-details  .button {
 }
 }
 @media (max-width: 1200px) {
+  .area{
+    visibility: hidden;
+  }
   .word span {
     font-size: 2.3rem;
   }
@@ -1474,6 +1477,9 @@ section .about-details  .button {
 }
 }
 @media (max-width: 1024px) {
+  .area{
+    visibility: hidden;
+  }
   .word span {
     font-size: 2.3rem;
   }
@@ -1543,6 +1549,9 @@ section .about-details  .button {
 }
 }
 @media (max-width: 992px) {
+  .area{
+    visibility: hidden;
+  }
   .word span {
     font-size: 2.3rem;
   }
@@ -1777,6 +1786,9 @@ section .about-details  .button {
   .wrapper_about{
     margin: 0 auto;
   }
+  .area{
+    visibility: hidden;
+  }
 }
 @media (max-width: 500px) {
   .word span {
@@ -1878,7 +1890,9 @@ section .about-details  .button {
   .back-face .info p {
     font-size: 0.9rem;
   }
-  
+  .area{
+    visibility: hidden;
+  }
 }
 @media (max-width: 400px) {
   .drag-picture{
@@ -1963,4 +1977,7 @@ margin-top: 11px;
   font-size: 1.1rem;
 }
   
+.area{
+  visibility: hidden;
+}
 }
