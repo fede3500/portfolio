@@ -1889,9 +1889,7 @@ section .about-details  .button {
   .contact .text {
     width: 100%;
   }
-  .topic-text {
-    text-align: center;
-  }
+
 
   .wrapper .main_content_project {
     width: 100%;
@@ -1987,9 +1985,7 @@ section .about-details  .button {
     visibility: visible;
   }
 
-  .topic-text {
-    text-align: center;
-  }
+
 
   .wrapper .main_content_project {
     width: 100%;
