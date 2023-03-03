@@ -124,11 +124,12 @@ nav.sticky .menu-btn {
 }
 .home .home-content {
   width: 90%;
-  height: 100%;
+  height: 100vh;
   margin: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow: hidden;
  
 }
 .home .text-one {
