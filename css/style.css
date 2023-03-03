@@ -134,6 +134,7 @@ nav.sticky .menu-btn {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow: hidden;
 
 }
 .home .text-one {
