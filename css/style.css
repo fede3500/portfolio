@@ -51,7 +51,7 @@ nav .navbar {
 }
 nav .navbar .logo a {
   font-weight: 500;
-  font-size: 35px;
+  font-size: 2rem;
   color: #4070f4;
 }
 nav.sticky .navbar .logo a {
@@ -66,7 +66,7 @@ nav .navbar .menu li {
   margin: 0 8px;
 }
 .navbar .menu a {
-  font-size: 18px;
+  font-size: 1.2rem;
   font-weight: 500;
   color: #0e2431;
   padding: 6px 0;
@@ -83,7 +83,7 @@ nav.sticky .menu a:hover {
 }
 .navbar .media-icons a {
   color: #4070f4;
-  font-size: 18px;
+  font-size: 1.1rem;
   margin: 0 6px;
 }
 nav.sticky .media-icons a {
@@ -1307,7 +1307,7 @@ footer .footer .content > div {
     font-size: 1.2rem;
   }
   nav .navbar .logo a {
-    font-size: 2.1rem;
+    font-size: 1.6rem;
   }
   .about-details .right {
     margin-bottom: 20%;
@@ -1325,9 +1325,7 @@ footer .footer .content > div {
   .content1 .left-side .details .text-two {
     font-size: 1.1rem;
   }
-  .navbar .media-icons a {
-    font-size: 1.3rem;
-  }
+ 
   section .topic {
     font-size: 1.3rem;
   }
@@ -1355,12 +1353,8 @@ footer .footer .content > div {
     width: 50%;
     margin-left: 2%;
   }
-  .navbar .menu a, .navbar .media-icons a{
-    font-size: 1.7rem;
-    }
-    nav .navbar .logo a{
-      font-size: 1.9rem;
-    }
+
+ 
   .word span {
     font-size: 2.3rem;
   }
@@ -1392,12 +1386,8 @@ footer .footer .content > div {
   .about .about-details .left {
     width: 50%;
   }
-  .navbar .menu a, .navbar .media-icons a{
-    font-size: 1.7rem;
-    }
-    nav .navbar .logo a{
-      font-size: 1.9rem;
-    }
+ 
+  
 .about{
   margin-bottom: 4%;
 }
@@ -1409,12 +1399,8 @@ section .about-details  .button {
 }
 }
 @media (max-width: 1200px) {
-  .navbar .menu a, .navbar .media-icons a{
-    font-size: 1.5rem;
-    }
-    nav .navbar .logo a{
-      font-size: 1.7rem;
-    }
+ 
+  
   .word span {
     font-size: 2.3rem;
   }
@@ -1507,12 +1493,8 @@ section .about-details  .button {
     justify-content: center;
   }
  
-  .navbar .menu a, .navbar .media-icons a{
-  font-size: 1rem;
-  }
-  nav .navbar .logo a{
-    font-size: 1.5rem;
-  }
+ 
+
   .image-avatar {
     width: 70%;
     visibility: visible;
