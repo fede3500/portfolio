@@ -1350,8 +1350,8 @@ footer .footer .content > div {
     width: 70%;
   }
   .skills-details .text {
-    width: 50%;
-    margin-left: 2%;
+    width: 100%;
+    margin-left: 1%;
   }
 
  
@@ -1368,6 +1368,26 @@ footer .footer .content > div {
     align-content: center;
     justify-content: center;
   }
+
+  .skills .skills-details{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+
+  .wrapper_skills_boxes{
+  margin: 0 auto;
+  width: 70%;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  }
+
+
+
 }
 @media (max-width: 1440px) {
   .word span {
@@ -1397,6 +1417,7 @@ section .about-details  .button {
     justify-content: center;
     align-items: center;
 }
+
 }
 @media (max-width: 1200px) {
  
