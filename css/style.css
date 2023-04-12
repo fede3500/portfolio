@@ -824,7 +824,7 @@ section .button {
   color: #000000c7;
 }
 .container {
-  width: 60%;
+  width: 90%;
   background: #fff;
   border-radius: 6px;
   padding: 20px 60px 30px 40px;
@@ -1417,6 +1417,31 @@ section .about-details  .button {
     justify-content: center;
     align-items: center;
 }
+
+.container {
+  height: 100%;
+}
+.container .content1 {
+  flex-direction: column-reverse;
+}
+.container .content1 .left-side {
+  width: 100%;
+  flex-direction: row;
+  margin-top: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.container .content1 .right-side {
+  width: 100%;
+  margin-left: 0;
+}
+
+.container .content1 .left-side::before {
+  display: none;
+}
+
+
+
 
 }
 @media (max-width: 1200px) {
