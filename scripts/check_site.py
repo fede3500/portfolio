@@ -65,7 +65,23 @@ with sync_playwright() as p:
     assert not stage.evaluate('e => e.classList.contains("is-active")')
     assert stage.evaluate('e => e.style.transform') == ''
     assert page.locator('.experience-item').count() == 4
-    assert page.locator('#experience .tech-card').count() == 19
+    expected_stacks = [
+        ['Azure AD', 'Jira', 'SAP HANA', 'Dynamics 365', 'Bruno', 'Python', 'JavaScript', 'PowerShell'],
+        ['Azure AD', 'Google Workspace', 'Cloud Identity', 'Intune', 'PowerShell', 'n8n', 'Postman', 'Python', 'cPanel'],
+        ['HTML5', 'CSS3', 'JavaScript', 'React', 'WordPress', 'Sass', 'Figma'],
+        ['Jira', 'Kustomer CRM', 'Insomnia'],
+    ]
+    for experience, expected in zip(page.locator('.experience-item').all(), expected_stacks):
+        assert [name.strip() for name in experience.locator('.tech-name').all_text_contents()] == expected
+        assert experience.locator('.experience-responsibilities, .experience-impact').count() == 0
+        assert experience.locator('.experience-detail > p').count() == 1
+        gap = experience.evaluate('e => e.querySelector(".experience-stack").getBoundingClientRect().top - e.querySelector(".experience-detail > p").getBoundingClientRect().bottom')
+        assert abs(gap - 16) < 1, gap
+    card_heights = page.locator('.experience-item').evaluate_all('(items) => items.map(e => e.getBoundingClientRect().height)')
+    assert max(card_heights) - min(card_heights) < 1, card_heights
+    expected_navigation = ['Work', 'Stack', 'Experience', 'Education', 'About', "Let's Connect"]
+    for navigation in ['.desktop-nav', '.mobile-nav']:
+        assert [name.strip() for name in page.locator(f'{navigation} a').all_text_contents()] == expected_navigation
     assert page.locator('#experience .tag-list').count() == 0
     for section in ['projects', 'expertise', 'experience']:
         page.locator(f'#{section}').screenshot(path=str(OUTPUT / f'{section}.png'), style='.site-header, .skip-link { visibility: hidden !important; }')
@@ -113,6 +129,11 @@ with sync_playwright() as p:
     assert page.locator('.mobile-menu').get_attribute('open') is not None
     page.locator('.mobile-nav a[href="#projects"]').click()
     assert page.locator('.mobile-menu').get_attribute('open') is None
+    for target in ['experience', 'education']:
+        page.locator('.mobile-menu summary').click()
+        page.locator(f'.mobile-nav a[href="#{target}"]').click()
+        assert page.url.endswith(f'#{target}')
+        assert page.locator('.mobile-menu').get_attribute('open') is None
     page.locator('.mobile-menu summary').click()
     page.keyboard.press('Escape')
     assert page.locator('.mobile-menu').get_attribute('open') is None
@@ -129,8 +150,8 @@ with sync_playwright() as p:
     page.locator('.tech-card').first.hover()
     assert page.locator('.tech-card').first.evaluate('e => getComputedStyle(e).transform') == 'none'
     page.set_viewport_size({'width': 1440, 'height': 1000})
-    page.locator('#learning').scroll_into_view_if_needed()
-    page.screenshot(path=str(OUTPUT / 'learning.png'))
+    page.locator('#education').scroll_into_view_if_needed()
+    page.screenshot(path=str(OUTPUT / 'education.png'))
     nojs = browser.new_context(java_script_enabled=False, viewport={'width': 390, 'height': 844})
     fallback = nojs.new_page()
     fallback.goto(URL)

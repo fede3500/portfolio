@@ -43,5 +43,7 @@
   "openai": "https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/svg/openai.svg",
   "claude": "https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/svg/claude-ai.svg",
   "gemini": "https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/svg/google-gemini.svg",
-  "kustomer": "https://www.google.com/s2/favicons?domain=kustomer.com&sz=64"
+  "kustomer": "https://www.google.com/s2/favicons?domain=kustomer.com&sz=64",
+  "sap": "https://raw.githubusercontent.com/benc-uk/icon-collection/master/logos/sap.svg",
+  "dynamics365": "https://raw.githubusercontent.com/benc-uk/icon-collection/master/logos/dynamics.svg"
 }
