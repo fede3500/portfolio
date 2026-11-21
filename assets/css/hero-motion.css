@@ -1,22 +1,22 @@
 .portrait { perspective: 1200px; }
 .portrait-stage { transform-style: preserve-3d; isolation: auto; transform: translateZ(0); transition: transform 280ms var(--ease-out); }
-.portrait-stage > img { transform: translateZ(20px); transition: transform 280ms var(--ease-out); }
-/* Hover changes the outer intensity; ambient motion runs on independent inner layers. */
-.portrait-aura { position: absolute; inset: 9% -8% -2%; pointer-events: none; z-index: -1; opacity: .7; transform: translateZ(-25px); transition: opacity 280ms var(--ease-out); }
+.portrait-stage > img { transform: translateZ(28px); }
+/* Full visual intensity is permanent; hover only adds pointer-driven transforms. */
+.portrait-aura { position: absolute; inset: 9% -8% -2%; pointer-events: none; z-index: -1; opacity: 1; transform: translateZ(-25px); }
 .portrait-aura::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 47%, #3b82f644 0%, #3b82f620 35%, transparent 69%), radial-gradient(ellipse at 57% 60%, #2dd4e525 0%, transparent 60%); animation: portrait-breathe 8s ease-in-out infinite; }
-.portrait-halo { position: absolute; left: 9%; top: 16%; width: 84%; height: auto; fill: none; stroke: var(--cyan); stroke-width: .8; opacity: .3; pointer-events: none; transform: translateZ(-12px); filter: drop-shadow(0 0 5px #65dce544); transition: opacity 280ms var(--ease-out), stroke-width 280ms var(--ease-out); animation: portrait-orbit 36s linear infinite; }
+.portrait-halo { position: absolute; left: 9%; top: 16%; width: 84%; height: auto; fill: none; stroke: var(--cyan); stroke-width: 1.15; opacity: .65; pointer-events: none; transform: translateZ(-12px); filter: drop-shadow(0 0 5px #65dce544); animation: portrait-orbit 36s linear infinite; }
 .portrait-halo circle, .portrait-halo path { animation: portrait-light 8s ease-in-out infinite; }
-.portrait-particles { position: absolute; inset: 0; pointer-events: none; opacity: .55; transform: translateZ(8px); transition: opacity 280ms var(--ease-out); }
+.portrait-particles { position: absolute; inset: 0; pointer-events: none; opacity: .85; transform: translateZ(8px); }
 .portrait-particles span { position: absolute; width: 5px; height: 5px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 10px #65dce580, 0 0 22px #4070f455; animation: portrait-float 7s ease-in-out infinite; }
 .portrait-particles span:nth-child(1) { left: 13%; top: 35%; }
 .portrait-particles span:nth-child(2) { left: 79%; top: 20%; width: 3px; height: 3px; animation-delay: -2s; }
 .portrait-particles span:nth-child(3) { left: 89%; top: 63%; animation-delay: -4s; }
 .portrait-particles span:nth-child(4) { left: 20%; top: 76%; width: 3px; height: 3px; animation-delay: -6s; }
-.hero-network { transform: translateZ(0); filter: drop-shadow(0 0 5px #4070f466); transition: opacity 280ms var(--ease-out), stroke 280ms var(--ease-out); }
+.hero-network { transform: translateZ(0); opacity: 1; stroke: #79b7fa; filter: drop-shadow(0 0 5px #4070f466); }
 .hero-network path { animation: network-light 6s ease-in-out infinite; }
 .hero-network circle { animation: network-light 4s ease-in-out infinite; }
 .hero-network circle:nth-of-type(2n) { animation-delay: -2s; }
-.hero-node { transform: translateZ(28px); transition: transform 280ms var(--ease-out), border-color 280ms var(--ease-out), box-shadow 280ms var(--ease-out); }
+.hero-node { transform: translateZ(28px); border-color: #4b8caa; box-shadow: 0 8px 18px #020a1833, 0 0 18px #65dce529; transition: transform 280ms var(--ease-out); }
 @keyframes portrait-orbit { to { transform: translateZ(-12px) rotate(360deg); } }
 @keyframes portrait-breathe { 0%, 100% { transform: scale(.94); opacity: .6; } 50% { transform: scale(1.06); opacity: .9; } }
 @keyframes portrait-light { 0%, 100% { opacity: .6; } 50% { opacity: 1; } }
@@ -24,12 +24,7 @@
 @keyframes portrait-float { 0%, 100% { transform: translate3d(0, 0, 0); opacity: .4; } 50% { transform: translate3d(4px, -8px, 0); opacity: 1; } }
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
   .portrait-stage.is-active { transform: translateY(-4px) scale(1.02); }
-  .portrait-stage.is-active > img { transform: translateZ(28px); }
-  .portrait-stage.is-active .portrait-aura { opacity: 1; }
-  .portrait-stage.is-active .portrait-halo { opacity: .65; stroke-width: 1.15; }
-  .portrait-stage.is-active .portrait-particles { opacity: .85; }
-  .portrait-stage.is-active .hero-network { opacity: 1; stroke: #79b7fa; }
-  .portrait-stage.is-active .hero-node { transform: translateZ(42px) translateY(-2px); border-color: #4b8caa; box-shadow: 0 8px 18px #020a1833, 0 0 18px #65dce529; }
+  .portrait-stage.is-active .hero-node { transform: translateZ(42px) translateY(-2px); }
 }
 @media (prefers-reduced-motion: reduce) {
   .portrait-stage, .portrait-stage.is-active, .portrait-stage > img, .hero-node { transform: none !important; transition: none; }

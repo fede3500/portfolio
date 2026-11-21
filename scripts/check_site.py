@@ -52,6 +52,12 @@ with sync_playwright() as p:
     ambient_before = stage.evaluate('e => e.getAnimations({subtree: true}).filter(a => a instanceof CSSAnimation).map(a => ({name: a.animationName, start: a.startTime}))')
     assert {animation['name'] for animation in ambient_before} == {'portrait-orbit', 'portrait-breathe', 'portrait-light', 'portrait-float', 'network-light'}
     assert stage.evaluate('e => e.getAnimations({subtree: true}).every(a => a.playState === "running" && a.effect.getTiming().iterations === Infinity)')
+    ambient_visual_reader = '''e => ['.portrait-aura', '.portrait-halo', '.portrait-particles', '.hero-network', '.hero-node'].map(selector => {
+        const s = getComputedStyle(e.querySelector(selector));
+        return {opacity: s.opacity, stroke: s.stroke, width: s.strokeWidth, shadow: s.boxShadow};
+    })'''
+    ambient_visual_before = stage.evaluate(ambient_visual_reader)
+    assert [layer['opacity'] for layer in ambient_visual_before[:4]] == ['1', '0.65', '0.85', '1']
     stage.hover()
     portrait = page.locator('.portrait').bounding_box()
     page.mouse.move(portrait['x'] + portrait['width'] * .8, portrait['y'] + portrait['height'] * .4)
@@ -65,11 +71,13 @@ with sync_playwright() as p:
     assert page.locator('.portrait-aura').evaluate('e => Number(getComputedStyle(e).opacity)') > .9
     assert page.locator('.portrait-halo').evaluate('e => getComputedStyle(e).animationPlayState') == 'running'
     assert stage.evaluate('e => e.getAnimations({subtree: true}).filter(a => a instanceof CSSAnimation).map(a => ({name: a.animationName, start: a.startTime}))') == ambient_before
+    assert stage.evaluate(ambient_visual_reader) == ambient_visual_before
     page.screenshot(path=str(OUTPUT / 'hero-hover.png'))
     page.mouse.move(20, 90)
     page.wait_for_timeout(350)
     assert not stage.evaluate('e => e.classList.contains("is-active")')
     assert stage.evaluate('e => e.style.transform') == ''
+    assert stage.evaluate(ambient_visual_reader) == ambient_visual_before
     assert stage.evaluate('e => e.getAnimations({subtree: true}).filter(a => a instanceof CSSAnimation).map(a => ({name: a.animationName, start: a.startTime}))') == ambient_before
     assert page.locator('.experience-item').count() == 4
     expected_stacks = [
@@ -86,7 +94,7 @@ with sync_playwright() as p:
         assert abs(gap - 16) < 1, gap
     card_heights = page.locator('.experience-item').evaluate_all('(items) => items.map(e => e.getBoundingClientRect().height)')
     assert max(card_heights) - min(card_heights) < 1, card_heights
-    expected_navigation = ['Work', 'Stack', 'Experience', 'Education', 'About', "Let's Connect"]
+    expected_navigation = ['Work', 'Stack', 'About', 'Experience', 'Education', "Let's Connect"]
     for navigation in ['.desktop-nav', '.mobile-nav']:
         assert [name.strip() for name in page.locator(f'{navigation} a').all_text_contents()] == expected_navigation
     assert page.locator('#experience .tag-list').count() == 0
