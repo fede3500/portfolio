@@ -1,0 +1,39 @@
+/* Original liquid bubbles and cat retained; motion now uses transforms. */
+.site-footer { --footer-background: var(--footer); position: relative; background: var(--footer-background); margin-top: 32px; isolation: isolate; }
+.footer-bubbles { position: absolute; z-index: -1; inset: -12px 0 auto; height: 36px; filter: url('#footer-blob'); pointer-events: none; }
+.footer-bubbles::after { content: ''; position: absolute; inset: 12px 0 -10px; background: var(--footer-background); }
+.bubble { position: absolute; bottom: 0; left: var(--position); width: var(--size); height: var(--size); border-radius: 50%; background: var(--footer-background); animation: bubble-rise var(--time) ease-in infinite; animation-delay: var(--delay); }
+@keyframes bubble-rise { 0% { transform: translate(-50%, 26px) scale(1); } 75% { transform: translate(-50%, calc(-1 * var(--distance))) scale(.75); } 100% { transform: translate(-50%, calc(-1.2 * var(--distance))) scale(0); } }
+.footer-inner { padding-block: 44px 36px; color: var(--white); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; gap: 24px; }
+.footer-connect h2 { font-size: 20px; letter-spacing: -.02em; margin-bottom: 12px; }
+.footer-connect nav { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.footer-connect a { display: inline-flex; align-items: center; min-height: 44px; font-size: 13px; }
+.footer-center { display: flex; flex-direction: column; align-items: center; justify-self: center; text-align: center; }
+.footer-center p { margin-top: 14px; font-size: 13px; white-space: nowrap; }
+.cat-toggle { display: grid; place-items: center; width: 128px; height: 112px; padding: 14px 0 0; border: 0; background: transparent; color: inherit; border-radius: 16px; }
+.cat-toggle .cat { height: 78px; width: 78px; }
+.cat-toggle:active:not(:disabled) { transform: scale(.97); }
+.cat-toggle:disabled { cursor: default; opacity: 1; }
+.footer-defs, .icon-defs { position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none; }
+.cat { position: relative; height: 50px; width: 50px; flex: 0 0 50px; }
+.ear { position: absolute; top: -30%; height: 60%; width: 25%; background: var(--white); }
+.ear::before, .ear::after { content: ''; position: absolute; bottom: 24%; height: 10%; width: 5%; border-radius: 50%; background: var(--footer-background); }
+.ear::after { transform-origin: 50% 100%; }
+.ear--left { left: -7%; border-radius: 70% 30% 0 0 / 100% 100% 0 0; transform: rotate(-15deg); }
+.ear--left::before, .ear--left::after { right: 10%; } .ear--left::after { transform: rotate(-45deg); }
+.ear--right { right: -7%; border-radius: 30% 70% 0 0 / 100% 100% 0 0; transform: rotate(15deg); }
+.ear--right::before, .ear--right::after { left: 10%; } .ear--right::after { transform: rotate(45deg); }
+.face { position: absolute; height: 100%; width: 100%; background: var(--footer-background); border-radius: 50%; }
+.eye { position: absolute; top: 35%; height: 30%; width: 31%; background: var(--white); border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; }
+.eye::after { content: ''; position: absolute; inset: 0; border-radius: 0 0 50% 50%; background: var(--footer-background); transform: scaleY(0); transform-origin: top; animation: blink 5s infinite; }
+@keyframes blink { 0%, 89%, 95%, 100% { transform: scaleY(0); } 92%, 97% { transform: scaleY(1); } }
+.eye::before { content: ''; position: absolute; top: 60%; height: 10%; width: 15%; background: var(--white); border-radius: 50%; }
+.eye--left { left: 0; } .eye--left::before { right: -5%; } .eye--right { right: 0; } .eye--right::before { left: -5%; }
+.eye-pupil { position: absolute; top: 25%; height: 50%; width: 20%; background: var(--ink); border-radius: 50%; animation: look-around 5s infinite; }
+@keyframes look-around { 0%, 25%, 100% { transform: translate(0); } 5%, 10% { transform: translate(50%, -25%); } 15%, 20% { transform: translate(-100%, -25%); } }
+.eye--left .eye-pupil { right: 30%; } .eye--right .eye-pupil { left: 30%; }
+.eye-pupil::after { content: ''; position: absolute; top: 30%; right: -5%; height: 20%; width: 35%; border-radius: 50%; background: var(--white); }
+.muzzle { position: absolute; top: 60%; left: 50%; height: 6%; width: 10%; background: var(--white); transform: translateX(-50%); border-radius: 50% 50% 50% 50% / 30% 30% 70% 70%; }
+.site-footer.motion-paused *, .site-footer.motion-paused *::before, .site-footer.motion-paused *::after { animation-play-state: paused; }
+@media (max-width: 760px) { .footer-inner { grid-template-columns: minmax(0, 1fr); gap: 28px; padding-block: 36px; } .footer-center { grid-row: 1; } .footer-connect { text-align: center; } .footer-connect nav { justify-content: center; } .footer-balance { display: none; } }
+@media (prefers-reduced-motion: reduce) { .footer-bubbles { filter: none; } .bubble { transform: translate(-50%, 0) scale(.55); } }
