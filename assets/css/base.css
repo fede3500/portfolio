@@ -1,6 +1,6 @@
 @font-face { font-family: 'Manrope'; src: url('../fonts/manrope-latin.woff2') format('woff2'); font-style: normal; font-weight: 200 800; font-display: swap; }
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-padding-top: 100px; scrollbar-color: var(--border) var(--bg); overflow-x: clip; }
+html { scroll-behavior: smooth; scroll-padding-top: 100px; scrollbar-color: var(--border) var(--bg); overflow-x: clip; }
 body { margin: 0; background: var(--bg); color: var(--text); font: 400 16px/1.7 var(--font); -webkit-text-size-adjust: 100%; overflow-x: clip; }
 ::selection { color: var(--white); background: var(--selection); }
 img, svg { display: block; max-width: 100%; }

@@ -1,5 +1,6 @@
 """Browser smoke checks. Requires Playwright; writes captures outside the project."""
 import json
+import hashlib
 import os
 from pathlib import Path
 import tempfile
@@ -29,6 +30,12 @@ with sync_playwright() as p:
     page.on('requestfailed', lambda request: errors.append(request.url + ': ' + str(request.failure)))
     page.goto(URL)
     page.evaluate('document.fonts.ready')
+    component_version = hashlib.sha256((ROOT / 'assets/css/components.css').read_bytes()).hexdigest()[:12]
+    assert page.locator('link[href^="assets/css/components.css"]').get_attribute('href') == f'assets/css/components.css?v={component_version}', 'Refresh the stylesheet cache key before publishing'
+    assert page.get_by_role('list', name='Languages').evaluate('e => getComputedStyle(e).display') == 'grid'
+    assert page.locator('.language-card').count() == 3
+    assert page.locator('.language-card').evaluate_all('(cards) => cards.every(e => getComputedStyle(e).borderTopWidth === "1px" && parseFloat(getComputedStyle(e).paddingTop) >= 16)')
+    assert page.locator('.language-flag svg').evaluate_all('(flags) => flags.length === 3 && flags.every(e => Math.abs(e.getBoundingClientRect().width - 32) < 1)')
     assert page.locator('h1').count() == 1
     assert page.locator('.project-card').count() == 6
     assert page.locator('.cat').count() == 1
@@ -149,6 +156,9 @@ with sync_playwright() as p:
         page.locator(f'.mobile-nav a[href="#{target}"]').click()
         assert page.url.endswith(f'#{target}')
         assert page.locator('.mobile-menu').get_attribute('open') is None
+    page.locator('.wordmark').click()
+    assert page.url.endswith('#home')
+    page.wait_for_function('window.scrollY < 2')
     page.locator('.mobile-menu summary').click()
     page.keyboard.press('Escape')
     assert page.locator('.mobile-menu').get_attribute('open') is None
