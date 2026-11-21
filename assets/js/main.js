@@ -1,6 +1,6 @@
 'use strict';
 
-// Pointer-only depth: no continuous JS loop, and no motion on touch or reduced-motion.
+// Pointer-only depth enriches the continuous CSS layers without resetting their animations.
 const portraitStage = document.querySelector('.portrait-stage');
 if (portraitStage) {
   const surface = portraitStage.closest('.portrait');
@@ -34,7 +34,7 @@ if (portraitStage) {
       const clamp = value => Math.max(-1, Math.min(1, value));
       const rotateY = clamp((pointerX - bounds.left - bounds.width / 2) / (bounds.width / 2)) * 3.2;
       const rotateX = -clamp((pointerY - bounds.top - bounds.height / 2) / (bounds.height / 2)) * 3.2;
-      portraitStage.style.transform = `translateY(-8px) scale(1.02) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg)`;
+      portraitStage.style.transform = `translateY(-4px) scale(1.02) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg)`;
     });
   });
   surface.addEventListener('pointerleave', resetPortrait);

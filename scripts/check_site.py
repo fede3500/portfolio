@@ -48,6 +48,10 @@ with sync_playwright() as p:
     page.screenshot(path=str(OUTPUT / 'desktop.png'), full_page=True)
     page.screenshot(path=str(OUTPUT / 'hero.png'))
     stage = page.locator('.portrait-stage')
+    stage.evaluate('e => Promise.all(e.getAnimations({subtree: true}).map(a => a.ready))')
+    ambient_before = stage.evaluate('e => e.getAnimations({subtree: true}).filter(a => a instanceof CSSAnimation).map(a => ({name: a.animationName, start: a.startTime}))')
+    assert {animation['name'] for animation in ambient_before} == {'portrait-orbit', 'portrait-breathe', 'portrait-light', 'portrait-float', 'network-light'}
+    assert stage.evaluate('e => e.getAnimations({subtree: true}).every(a => a.playState === "running" && a.effect.getTiming().iterations === Infinity)')
     stage.hover()
     portrait = page.locator('.portrait').bounding_box()
     page.mouse.move(portrait['x'] + portrait['width'] * .8, portrait['y'] + portrait['height'] * .4)
@@ -57,13 +61,16 @@ with sync_playwright() as p:
     angles = re.findall(r'rotate[XY]\(([-.\d]+)deg\)', transform)
     assert len(angles) == 2 and all(abs(float(a)) <= 3.2 for a in angles), transform
     assert any(abs(float(a)) > .1 for a in angles), transform
+    assert 'translateY(-4px)' in transform, transform
     assert page.locator('.portrait-aura').evaluate('e => Number(getComputedStyle(e).opacity)') > .9
     assert page.locator('.portrait-halo').evaluate('e => getComputedStyle(e).animationPlayState') == 'running'
+    assert stage.evaluate('e => e.getAnimations({subtree: true}).filter(a => a instanceof CSSAnimation).map(a => ({name: a.animationName, start: a.startTime}))') == ambient_before
     page.screenshot(path=str(OUTPUT / 'hero-hover.png'))
     page.mouse.move(20, 90)
     page.wait_for_timeout(350)
     assert not stage.evaluate('e => e.classList.contains("is-active")')
     assert stage.evaluate('e => e.style.transform') == ''
+    assert stage.evaluate('e => e.getAnimations({subtree: true}).filter(a => a instanceof CSSAnimation).map(a => ({name: a.animationName, start: a.startTime}))') == ambient_before
     assert page.locator('.experience-item').count() == 4
     expected_stacks = [
         ['Azure AD', 'Jira', 'SAP HANA', 'Dynamics 365', 'Bruno', 'Python', 'JavaScript', 'PowerShell'],
@@ -165,6 +172,7 @@ with sync_playwright() as p:
     touch_page.goto(URL)
     touch_page.locator('.portrait-stage').tap()
     assert not touch_page.locator('.portrait-stage').evaluate('e => e.classList.contains("is-active")')
+    assert touch_page.locator('.portrait-halo').evaluate('e => getComputedStyle(e).animationPlayState') == 'running'
     assert touch_page.evaluate('matchMedia("(hover: hover) and (pointer: fine)").matches') is False
     touch_context.close()
     assert not errors, errors
