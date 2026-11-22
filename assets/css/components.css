@@ -58,7 +58,7 @@
 .practice > article + article { padding-left: 48px; border-left: 1px solid var(--border); }
 .practice .tag-list { display: flex; gap: 6px; }
 .practice .tag-list li { font-size: 11px; }
-.projects-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 24px; }
+.projects-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: 1fr; gap: 32px 24px; }
 .project-card { min-width: 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; transition: border-color 180ms ease-out; }
 .project-image { background: var(--surface-soft); overflow: hidden; aspect-ratio: 16 / 10; }
 .project-image img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 300ms var(--ease-out); }
