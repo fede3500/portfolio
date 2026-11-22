@@ -88,8 +88,8 @@ with sync_playwright() as p:
     assert stage.evaluate('e => e.getAnimations({subtree: true}).filter(a => a instanceof CSSAnimation).map(a => ({name: a.animationName, start: a.startTime}))') == ambient_before
     assert page.locator('.experience-item').count() == 4
     expected_stacks = [
-        ['Azure AD', 'Jira', 'SAP HANA', 'Dynamics 365', 'Bruno', 'Python', 'JavaScript', 'PowerShell'],
-        ['Azure AD', 'Google Workspace', 'Cloud Identity', 'Intune', 'PowerShell', 'n8n', 'Postman', 'Python', 'cPanel'],
+        ['Azure AD', 'Jira', 'SAP HANA', 'Dynamics 365', 'Bruno', 'Python', 'JavaScript', 'PowerShell', 'TeamViewer'],
+        ['Azure AD', 'Google Workspace', 'Cloud Identity', 'Intune', 'PowerShell', 'n8n', 'Postman', 'Python', 'RustDesk'],
         ['HTML5', 'CSS3', 'JavaScript', 'React', 'WordPress', 'Sass', 'Figma'],
         ['Jira', 'Kustomer CRM', 'Insomnia'],
     ]
@@ -98,7 +98,7 @@ with sync_playwright() as p:
         assert experience.locator('.experience-responsibilities, .experience-impact').count() == 0
         assert experience.locator('.experience-detail > p').count() == 1
         gap = experience.evaluate('e => e.querySelector(".experience-stack").getBoundingClientRect().top - e.querySelector(".experience-detail > p").getBoundingClientRect().bottom')
-        assert abs(gap - 16) < 1, gap
+        assert abs(gap - 12) < 1, gap
     card_heights = page.locator('.experience-item').evaluate_all('(items) => items.map(e => e.getBoundingClientRect().height)')
     assert max(card_heights) - min(card_heights) < 1, card_heights
     expected_navigation = ['Work', 'Stack', 'About', 'Experience', 'Education', "Let's Connect"]
@@ -120,8 +120,8 @@ with sync_playwright() as p:
         assert not axe_results, axe_results
     page.locator('.site-footer').scroll_into_view_if_needed()
     assert page.locator('#labs').count() == 0
-    assert page.locator('#expertise .tech-card').count() == 39
-    assert page.locator('#expertise .tech-card img').count() == 39
+    assert page.locator('#expertise .tech-card').count() == 41
+    assert page.locator('#expertise .tech-card img').count() == 41
     assert page.locator('#expertise .tag-list').count() == 0
     assert page.locator('.portrait img').get_attribute('src').endswith('avatar-cutout.webp')
     assert 'A technical mindset.' not in page.locator('body').inner_text()
