@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="surface" x2="1" y2="1">
+      <stop stop-color="#172334"/>
+      <stop offset="1" stop-color="#0d121c"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="m0 0 6 3-6 3" fill="#66cbe8"/>
+    </marker>
+  </defs>
+  <path fill="url(#surface)" d="M0 0h800v500H0z"/>
+  <g font-family="Arial, sans-serif">
+    <text x="54" y="100" fill="#f3f6fc" font-size="46" font-weight="700">BRICS Analyzer</text>
+    <text x="56" y="140" fill="#b5c5da" font-size="21">Data analysis with automated CI workflows</text>
+    <g fill="#172b3d" stroke="#3c617b" stroke-width="2">
+      <rect x="54" y="218" width="196" height="118" rx="14"/>
+      <rect x="302" y="218" width="196" height="118" rx="14"/>
+      <rect x="550" y="218" width="196" height="118" rx="14"/>
+    </g>
+    <g fill="none" stroke="#66cbe8" stroke-width="2" marker-end="url(#arrow)">
+      <path d="M258 277h32"/>
+      <path d="M506 277h32"/>
+    </g>
+    <g text-anchor="middle">
+      <g fill="#f3f6fc" font-size="24" font-weight="700">
+        <text x="152" y="269">Install</text>
+        <text x="400" y="269">Validate</text>
+        <text x="648" y="269">Analyze</text>
+      </g>
+      <g fill="#b5c5da" font-size="17">
+        <text x="152" y="303">Dependencies</text>
+        <text x="400" y="303">Environment</text>
+        <text x="648" y="303">BRICS data</text>
+      </g>
+    </g>
+    <path d="M54 386h692" stroke="#32465e"/>
+    <text x="54" y="432" fill="#79d6ef" font-size="21">Python</text>
+    <text x="178" y="432" fill="#b5c5da" font-size="21">Pandas</text>
+    <text x="746" y="432" fill="#b5c5da" font-size="21" text-anchor="end">GitHub Actions</text>
+  </g>
+</svg>
